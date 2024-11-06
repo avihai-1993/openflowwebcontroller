@@ -1,0 +1,5 @@
+<li><a href="http://localhost:5000/flows">flows</a></li>
+<li><a href="http://localhost:5000/flow_editor">flow_editor</a></li>
+<li><a href="http://localhost:5000/common_flow_rules_UI">common-flow-rules-UI</a></li>
+<li><a href="http://localhost:5000/info">Info</a></li>
+<li><a href="http://10.21.20.70:8087/" target="_blank" rel="noopener noreferrer">sflow_dash</a></li>

@@ -1,0 +1,5 @@
+<option value="add_flow_Block">Insert add flow Block JSON Object</option>
+<option value="del_flow_block_by_flowId">Insert del flow by ID Block JSON Object</option>
+<option value="in_port" data-cmd-item="in_port=<PORT>">Insert in port match to JSON Object</option>
+<option value="output" data-cmd-item="output:PORT">Insert output action to JSON Object</option>
+<option value="drop" data-cmd-item="drop">Insert drop action to JSON Object</option>
