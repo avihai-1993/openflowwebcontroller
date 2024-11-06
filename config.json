@@ -1,7 +1,7 @@
 {
-  "host_ip":"10.21.20.58",
-  "host_user": "admin",
-  "host_user_pass": "mlsmls8",
-  "bridge": "br1"
+  "host_ip":"",
+  "host_user": "",
+  "host_user_pass": "",
+  "bridge": ""
 
 }
