@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/codemirror/lib/codemirror.css">
+    <script src="/static/codemirror/lib/codemirror.js"></script>
+
+</head>
+<body>
+     <header>
+        <h1>{{title}}</h1>
+    </header>
+    <nav>
+        <ul id="tabs">
+
+        </ul>
+    </nav>
+    <main id="main_cont">
+ <div class="container">
+        <div>
+            <div id="loading-spinner" class="loading-spinner"></div>
+            <select id="block_to_insert">
+                <!--<option value="add_flow_Block">Insert add flow Block JSON Object</option>
+                <option value="in_port" data-cmd-item="in_port=<PORT>">Insert in port match to JSON Object</option>
+                <option value="Rule">Insert Rule JSON Object</option>
+                <option value="Match">Insert Match JSON Object</option>
+                <option value="Action">Insert Action JSON Object</option>
+                <option value="Chain">Insert Chain JSON Object</option>-->
+            </select>
+            <button title="insert json Object" onclick="json_block_insertion_controller()" id="insert_json_obj"><img src="/static/icons/data_object.png"></button>
+            <button title="Validate JSON" onclick="validateJSON()"><img src="/static/icons/verified.png"></button>
+            <button  title="Clear" id="ClearBtn"><img src="/static/icons/ink_eraser.png"></button>
+            <button  title="send" id="send" onclick="sendJson()" ><img src="/static/icons/send.png"></button>
+            <br>
+            <br>
+            <div id="response" class="response_box"></div>
+        </div>
+        <br>
+        <textarea id="jsonTextarea"></textarea>
+    </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 OVS Controller</p>
+    </footer>
+<script>
+       fetch('http://localhost:5000/app/v1/getTabs')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('tabs').innerHTML = html;
+        })
+        .catch(error => console.error('Error fetching settings:', error));
+
+
+        fetch('http://localhost:5000/app/v1/get_flow_editor_options')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('block_to_insert').innerHTML = html;
+        })
+        .catch(error => console.error('Error fetching settings:', error));
+
+
+</script>
+
+<script src="/static/js/flow_editor.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+     <header>
+        <h1>{{title}}</h1>
+    </header>
+    <nav>
+        <ul id="tabs">
+        </ul>
+    </nav>
+    <main id="main_cont">
+        <!--<button id="add_flow_btn" onclick="openDialog()">add flow</button>-->
+        <h3>Flow rules on {{switch_host}} bridge : {{bridge}}</h3>
+        <div class="command-section">
+            <table id="rules-table">
+                <!--<thead>
+                    <tr>
+                        <th>Switch</th>
+                        <th>Priority</th>
+                        <th>Match</th>
+                        <th>Actions</th>
+                        <th>Modify</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead> -->
+                <tbody>
+                    <!-- Rules will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+        <!--<dialog id="add_edit_flow_dialog">
+        <div class="command-section">
+            <h2>Add/Modify Rule</h2>
+            <form id="rule-form">
+                <input type="hidden" id="rule-id">
+                <label for="switch">Switch:</label>
+                <input type="text" id="switch" placeholder="Enter switch name">
+
+                <label for="priority">Priority:</label>
+                <input type="number" id="priority" placeholder="Enter priority">
+
+                <label for="match">Match:</label>
+                <select id="match">
+                    <option value="in_port">In Port</option>
+                    <option value="eth_type">Ethernet Type</option>
+                    <option value="vlan_vid">VLAN ID</option>
+                    <option value="ip_src">Source IP Address</option>
+                    <option value="ip_dst">Destination IP Address</option>
+                    <option value="tcp_src">Source TCP Port</option>
+                    <option value="tcp_dst">Destination TCP Port</option>
+
+              </select>
+                <input type="text" id="match-value" placeholder="Enter match value">
+
+                <label for="actions">Actions:</label>
+                <select id="actions">
+                    <option value="output">Output</option>
+                    <option value="drop">Drop</option>
+                    <option value="set_field">Set Field</option>
+                    <option value="push_vlan">Push VLAN</option>
+                    <option value="pop_vlan">Pop VLAN</option>
+
+              </select>
+                <input type="text" id="action-value" placeholder="Enter action value">
+                 <br>
+                <button type="button" onclick="saveRule()">Save Rule</button>
+                <button type="button" onclick="closeDialog()">close</button>
+            </form>
+        </div>
+        </dialog> -->
+    </div>
+       <!-- <button id="commit" onclick="commitRules()">commit rules</button> -->
+    </main>
+    <footer>
+        <p>&copy; 2024 OVS Controller</p>
+    </footer>
+
+<script>
+       fetch('http://localhost:5000/app/v1/getTabs')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('tabs').innerHTML = html;
+        })
+        .catch(error => console.error('Error fetching settings:', error));
+</script>
+<script src="/static/js/flows.js"></script>
+
+</body>
+</html>

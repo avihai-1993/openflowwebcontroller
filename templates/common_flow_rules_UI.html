@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+     <header>
+        <h1>{{title}}</h1>
+    </header>
+    <nav>
+        <ul id="tabs">
+
+        </ul>
+    </nav>
+    <main id="main_cont">
+        <h1>OVS-OFCTL Add flow Form</h1>
+
+    <form id="ovs-form">
+       <fieldset>
+         <legend>Priority:</legend>
+            <input type="number" name="Priority" id="Priority" value="1" required>
+            <br>
+        </fieldset>
+        <fieldset>
+            <legend>Match Criteria:</legend>
+            <label for="in_port">In Port:</label>
+            <input type="number" name="in_port" id="in_port" placeholder="Give a switch port number">
+            <br>
+
+            <label for="dl_src">Source MAC Address:</label>
+            <input type="text" name="dl_src" id="dl_src" pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" placeholder="00:1A:2B:3C:4D:5E">
+            <br>
+
+            <label for="dl_dst">Destination MAC Address:</label>
+            <input type="text" name="dl_dst" id="dl_dst" pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$" placeholder="00:1A:2B:3C:4D:5E">
+            <br>
+
+            <!--<label for="dl_type">Ethernet Type:</label>
+            <input type="text" name="dl_type" id="dl_type">
+            <br>-->
+
+            <label for="vlan_tag">Vlan tags:</label>
+            <input type="text" name="dl_vlan" id="vlan_tag">
+            <br>
+
+            <label for="vlan_tag_pcp">Vlan tags pcp:</label>
+            <input type="text" name="dl_vlan_pcp" id="vlan_tag_pcp">
+            <br>
+
+            <label for="nw_src">Source IP Address:</label>
+            <input type="text" name="nw_src" id="nw_src" pattern="^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(/(3[0-2]|[12]?[0-9]))?$" placeholder="198.10.23.1/24">
+            <br>
+
+            <label for="nw_dst">Destination IP Address:</label>
+            <input type="text" name="nw_dst" id="nw_dst" pattern="^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(/(3[0-2]|[12]?[0-9]))?$" placeholder="198.10.23.1/24">
+            <br>
+
+            <label for="protocol_type">Port protocol Type:</label>
+            <select name="protocol_type" id="protocol_type">
+                <option value="tcp">tcp</option>
+                <option value="udp">udp</option>
+            </select>
+
+            <label for="tp_src">Source Port:</label>
+            <input type="number" name="tp_src" id="tp_src" pattern="[0-9]+" placeholder="port number like 5666">
+            <br>
+
+            <label for="tp_dst">Destination Port:</label>
+            <input type="number" name="tp_dst" id="tp_dst" pattern="[0-9]+" placeholder="port number like 5666">
+            <br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Action:</legend>
+            <label for="action_type">Action Type:</label>
+            <select name="action_type" id="action_type" >
+                <option value="output">Output</option>
+                <option value="drop">drop</option>
+                <!--<option value="set_field">Set Field</option>
+                <option value="goto_table">Goto Table</option>
+                <option value="meter">Meter</option>
+                <option value="learn">Learn</option>
+                <option value="load_balancer">Load Balancer</option>-->
+            </select>
+            <br>
+
+            <div id="action_options"></div>
+        </fieldset>
+
+        <button type="submit">Create Command</button>
+    </form>
+    </main>
+    <!--<footer>
+        <p>&copy; 2024 OVS Controller</p>
+    </footer>-->
+<script>
+       fetch('http://localhost:5000/app/v1/getTabs')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('tabs').innerHTML = html;
+        })
+        .catch(error => console.error('Error fetching settings:', error));
+</script>
+<script src="/static/js/common_flow_rules_UI.js"></script>
+
+</body>
+</html>

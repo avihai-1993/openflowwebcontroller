@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+     <header>
+        <h1>{{title}}</h1>
+    </header>
+    <nav>
+        <ul id="tabs">
+
+        </ul>
+    </nav>
+    <main id="main_cont">
+        <h2>General System Information</h2>
+        <h5>Switch IP : {{switch_host}}</h5>
+        <h5>bridge : {{bridge}}</h5>
+        <h5>OVS Supported tool : ovs-ofctl</h5>
+        <h5>system version : 0.0.1</h5>
+
+        <h2>Supported Functionality for current version</h2>
+        <ul>
+            <li><h5>show the current flow rules on the backend switch/bridge</h5></li>
+            <li><h5>add one flow rule at a time only via the flow editor tab</h5></li>
+            <li><h5>delete one flow rule at a time by flow_id only  via the flow editor tab</h5></li>
+            <li><h5>redirect/give access to a third party sflow analyzer system via sflow dash tab</h5></li>
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2024 OVS Controller</p>
+    </footer>
+<script>
+       fetch('http://localhost:5000/app/v1/getTabs')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('tabs').innerHTML = html;
+        })
+        .catch(error => console.error('Error fetching settings:', error));
+</script>
+<!--<script src="/static/js/info.js"></script>-->
+
+</body>
+</html>
